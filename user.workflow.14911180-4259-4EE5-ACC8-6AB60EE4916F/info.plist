@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>C0599899-ADDA-4673-96A5-3A353EF86396</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CDBFAD56-E46C-4C05-9026-B25F6FCF50A9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string></string>
+	<key>description</key>
+	<string>Loads sublime, terminal, and chrome</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Launch Live Workspace</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+  tell application "Terminal"
+	activate
+	
+    -- NPM START
+    do script "cd /Users/ccogell13/HuffPost/Live/hplive_client/MainApp &amp;&amp; source ../../env.sh &amp;&amp; npm start"
+
+    -- CD AND OPEN CODE
+	my makeTab()
+    do script "cd /Users/ccogell13/HuffPost/Live/hplive_client/MainApp &amp;&amp; sub ." in tab 2 of window 1
+
+	-- SSH ADD HP KEY
+    my makeTab()
+    do script "cd ~ &amp;&amp; . ./scripts/check_ssh_key.sh huff_rsa" in tab 3 of window 1
+
+  end tell
+end alfred_script
+
+on makeTab()
+  tell application "System Events" to tell process "Terminal" to keystroke "t" using command down
+  delay 0.2
+end makeTab
+</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>CDBFAD56-E46C-4C05-9026-B25F6FCF50A9</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>hp live</string>
+				<key>text</key>
+				<string>Launch Live Workspace</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>C0599899-ADDA-4673-96A5-3A353EF86396</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>C0599899-ADDA-4673-96A5-3A353EF86396</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>CDBFAD56-E46C-4C05-9026-B25F6FCF50A9</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>

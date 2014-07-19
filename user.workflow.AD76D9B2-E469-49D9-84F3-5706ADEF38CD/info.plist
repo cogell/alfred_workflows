@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>carlosnz.alfredblur</string>
+	<key>connections</key>
+	<dict>
+		<key>D0ACFC2D-9B10-45CB-A39E-5CF15A1C1760</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6A11FD20-35EA-4DC8-B2ED-9605523603F8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>EA1D940E-0177-42DE-A573-BCC2A035B445</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D0ACFC2D-9B10-45CB-A39E-5CF15A1C1760</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Carl Smith (@CarlosNZ)</string>
+	<key>description</key>
+	<string>Set Alfred window background blur</string>
+	<key>name</key>
+	<string>Alfred Blur</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>blur</string>
+				<key>subtext</key>
+				<string>Enter a value. Use 0 to reset (Try 3.0 to start with)</string>
+				<key>text</key>
+				<string>Alfred Transparency Blur (hack)</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>EA1D940E-0177-42DE-A573-BCC2A035B445</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>defaults write com.runningwithcrayons.Alfred-2 experimentalBlur -float {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D0ACFC2D-9B10-45CB-A39E-5CF15A1C1760</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Remember to restart Alfred for changes to take effect.</string>
+				<key>title</key>
+				<string>Done!</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>6A11FD20-35EA-4DC8-B2ED-9605523603F8</string>
+		</dict>
+	</array>
+	<key>uidata</key>
+	<dict>
+		<key>6A11FD20-35EA-4DC8-B2ED-9605523603F8</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>D0ACFC2D-9B10-45CB-A39E-5CF15A1C1760</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>EA1D940E-0177-42DE-A573-BCC2A035B445</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://geekzone.philosophicalzombie.net</string>
+</dict>
+</plist>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>category</key>
+	<string>Internet</string>
+	<key>connections</key>
+	<dict>
+		<key>4745093D-6084-41B7-9BC9-021C8281C82A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1471B0F2-8B82-4BF7-A5D8-04203F088D9C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>780C22AD-AEDD-4914-9F08-BC094A06BBC4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1471B0F2-8B82-4BF7-A5D8-04203F088D9C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>8A411E36-E1D3-4F9B-A6DA-8922B49D6C18</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1471B0F2-8B82-4BF7-A5D8-04203F088D9C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>9703A5B7-F9A3-422A-80EC-5B6A7BDA1AF7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1471B0F2-8B82-4BF7-A5D8-04203F088D9C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>E8C6098F-4701-472E-88A3-B7E6DF9C9183</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1471B0F2-8B82-4BF7-A5D8-04203F088D9C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Steven La</string>
+	<key>description</key>
+	<string>Change tracks</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Google Music Hotkeys (Chrome)</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>3</integer>
+				<key>argumenttext</key>
+				<string>prevSong</string>
+				<key>hotkey</key>
+				<integer>98</integer>
+				<key>hotmod</key>
+				<integer>8388608</integer>
+				<key>hotstring</key>
+				<string>F7</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>E8C6098F-4701-472E-88A3-B7E6DF9C9183</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>-- Open new window to google play music
+on openWindow()
+  tell application "Google Chrome"
+    activate
+    set newWin to make new window
+    tell active tab of newWin to set URL to "http://play.google.com/music"
+  end tell
+end openWindow
+
+-- Does action to google play music window.
+-- Returns true if google play music window is open, false otherwise
+on sendAction(action)
+  tell application "Google Chrome"
+    -- Pause the track
+    repeat with w in (every window)
+      repeat with t in (every tab whose URL contains "play.google.com/music") of w
+		  
+		if action = "prevSong" then
+        		tell t to execute javascript "(document.getElementsByClassName('flat-button')[1]).click();"
+		end if
+		
+		if action = "playPause" then
+        		tell t to execute javascript "(document.getElementsByClassName('flat-button')[2]).click();"
+		end if
+		
+		if action = "nextSong" then
+        		tell t to execute javascript "(document.getElementsByClassName('flat-button')[3]).click();"
+		end if
+		
+		if action = "like" then
+        		tell t to execute javascript "document.getElementsByClassName('rating-container thumbs')[0].getElementsByTagName('li')[0].click();"
+		end if
+		
+		if action = "dislike" then
+        		tell t to execute javascript "document.getElementsByClassName('rating-container thumbs')[0].getElementsByTagName('li')[1].click();"
+		end if
+		
+        return true
+      end repeat
+    end repeat
+  end tell
+  return false
+end sendAction
+
+on run
+  if sendAction("{query}") is false and "{query}" is "playPause" then
+    openWindow()
+  end if
+end run
+</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>1471B0F2-8B82-4BF7-A5D8-04203F088D9C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>3</integer>
+				<key>argumenttext</key>
+				<string>playPause</string>
+				<key>hotkey</key>
+				<integer>100</integer>
+				<key>hotmod</key>
+				<integer>8388608</integer>
+				<key>hotstring</key>
+				<string>F8</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>8A411E36-E1D3-4F9B-A6DA-8922B49D6C18</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>3</integer>
+				<key>argumenttext</key>
+				<string>nextSong</string>
+				<key>hotkey</key>
+				<integer>101</integer>
+				<key>hotmod</key>
+				<integer>8388608</integer>
+				<key>hotstring</key>
+				<string>F9</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>780C22AD-AEDD-4914-9F08-BC094A06BBC4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>3</integer>
+				<key>argumenttext</key>
+				<string>like</string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>9703A5B7-F9A3-422A-80EC-5B6A7BDA1AF7</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>3</integer>
+				<key>argumenttext</key>
+				<string>dislike</string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>4745093D-6084-41B7-9BC9-021C8281C82A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Use KeyRemap4Macbook or something to remap previous track to F7, play/pause to F8, next track to F9.</string>
+	<key>uidata</key>
+	<dict>
+		<key>1471B0F2-8B82-4BF7-A5D8-04203F088D9C</key>
+		<dict>
+			<key>ypos</key>
+			<real>100</real>
+		</dict>
+		<key>4745093D-6084-41B7-9BC9-021C8281C82A</key>
+		<dict>
+			<key>ypos</key>
+			<real>470</real>
+		</dict>
+		<key>780C22AD-AEDD-4914-9F08-BC094A06BBC4</key>
+		<dict>
+			<key>ypos</key>
+			<real>230</real>
+		</dict>
+		<key>8A411E36-E1D3-4F9B-A6DA-8922B49D6C18</key>
+		<dict>
+			<key>ypos</key>
+			<real>120</real>
+		</dict>
+		<key>9703A5B7-F9A3-422A-80EC-5B6A7BDA1AF7</key>
+		<dict>
+			<key>ypos</key>
+			<real>340</real>
+		</dict>
+		<key>E8C6098F-4701-472E-88A3-B7E6DF9C9183</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>stevenla.com</string>
+</dict>
+</plist>
